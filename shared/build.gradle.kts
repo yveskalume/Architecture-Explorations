@@ -6,3 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.secrets.gradle.plugin) apply false
 }
+
+subprojects {
+    group = "dev.yveskalume.newsapp.shared"
+    version = "1.0.0"
+}
