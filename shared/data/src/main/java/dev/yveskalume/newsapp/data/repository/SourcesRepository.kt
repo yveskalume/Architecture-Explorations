@@ -1,6 +1,6 @@
-package dev.yveskalume.newsappp.data.repository
+package dev.yveskalume.newsapp.data.repository
 
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 interface SourcesRepository {
     suspend fun getSources(

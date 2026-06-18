@@ -1,8 +1,8 @@
-package dev.yveskalume.newsappp.data.repository
+package dev.yveskalume.newsapp.data.repository
 
 import dev.yveskalume.newsapp.data.network.datasource.SourcesDataSource
-import dev.yveskalume.newsappp.data.network.model.toDomain
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.data.network.model.toDomain
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 class SourcesRepositoryImpl(
     private val sourcesDataSource: SourcesDataSource

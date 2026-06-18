@@ -1,6 +1,6 @@
 package dev.yveskalume.newsapp.data.network.datasource
 
-import dev.yveskalume.newsappp.data.network.model.NewsResponseDto
+import dev.yveskalume.newsapp.data.network.model.NewsResponseDto
 
 interface NewsDataSource {
     /**

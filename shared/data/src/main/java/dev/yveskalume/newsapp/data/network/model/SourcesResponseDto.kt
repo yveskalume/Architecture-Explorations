@@ -1,6 +1,6 @@
-package dev.yveskalume.newsappp.data.network.model
+package dev.yveskalume.newsapp.data.network.model
 
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.domain.model.SourceItem
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

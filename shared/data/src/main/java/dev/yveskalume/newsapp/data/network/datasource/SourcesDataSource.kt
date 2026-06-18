@@ -1,6 +1,6 @@
 package dev.yveskalume.newsapp.data.network.datasource
 
-import dev.yveskalume.newsappp.data.network.model.SourcesResponseDto
+import dev.yveskalume.newsapp.data.network.model.SourcesResponseDto
 
 interface SourcesDataSource {
     suspend fun getSources(

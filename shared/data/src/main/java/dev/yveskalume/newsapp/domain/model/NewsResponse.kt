@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.domain.model
+package dev.yveskalume.newsapp.domain.model
 
 data class Article(
     val source: Source,

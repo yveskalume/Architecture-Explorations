@@ -1,6 +1,6 @@
 package dev.yveskalume.newsapp.data.network.datasource
 
-import dev.yveskalume.newsappp.data.network.model.NewsResponseDto
+import dev.yveskalume.newsapp.data.network.model.NewsResponseDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
