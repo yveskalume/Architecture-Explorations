@@ -1,8 +1,8 @@
 package dev.yveskalume.newsappp.ui.preview
 
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.domain.model.Source
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.Source
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 
 internal object PreviewSampleData {

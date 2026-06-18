@@ -2,8 +2,8 @@ package dev.yveskalume.newsappp.ui.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.yveskalume.newsappp.data.repository.ArticleRepository
-import dev.yveskalume.newsappp.domain.model.Article
+import dev.yveskalume.newsapp.data.repository.ArticleRepository
+import dev.yveskalume.newsapp.domain.model.Article
 import dev.yveskalume.newsappp.util.paging.Pager
 import dev.yveskalume.newsappp.util.paging.createPage
 import kotlinx.coroutines.flow.MutableStateFlow

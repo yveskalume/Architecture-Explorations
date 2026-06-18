@@ -1,13 +1,12 @@
 package dev.yveskalume.newsappp.ui.screens.home
 
 import androidx.compose.runtime.Stable
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 @Stable
 sealed interface SourcesUiState {
     data object Loading : SourcesUiState
-    data class Success(val sources: List<SourceItem>,val selected: SourceItem?) : SourcesUiState
+    data class Success(val sources: List<SourceItem>, val selected: SourceItem?) : SourcesUiState
     data class Error(val message: String) : SourcesUiState
 }
 

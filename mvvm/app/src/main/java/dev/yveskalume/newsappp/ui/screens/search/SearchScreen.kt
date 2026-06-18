@@ -28,7 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.yveskalume.newsappp.R
-import dev.yveskalume.newsappp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.Article
 import dev.yveskalume.newsappp.ui.components.EmptyContent
 import dev.yveskalume.newsappp.ui.components.NewsCardCompact
 import dev.yveskalume.newsappp.ui.components.NewsCardCompactShimmer

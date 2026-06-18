@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import dev.yveskalume.newsappp.R
-import dev.yveskalume.newsappp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.Article
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -131,7 +131,7 @@ fun NewsCard(
                 if (!article.description.isNullOrBlank()) {
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = article.description,
+                        text = article.description!!,
                         style = MaterialTheme.typography.bodyMedium,
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis,

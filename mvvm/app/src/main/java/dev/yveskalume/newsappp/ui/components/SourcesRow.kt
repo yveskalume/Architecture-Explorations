@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 @Composable
 fun SourcesRow(

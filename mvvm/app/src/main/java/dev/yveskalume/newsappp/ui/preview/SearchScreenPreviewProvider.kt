@@ -1,7 +1,7 @@
 package dev.yveskalume.newsappp.ui.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import dev.yveskalume.newsappp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.Article
 import dev.yveskalume.newsappp.util.paging.DataState
 import dev.yveskalume.newsappp.util.paging.PageNumber
 import dev.yveskalume.newsappp.util.paging.PageSnapshot
