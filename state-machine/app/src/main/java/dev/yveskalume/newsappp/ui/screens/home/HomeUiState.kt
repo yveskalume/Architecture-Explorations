@@ -1,9 +1,9 @@
 package dev.yveskalume.newsappp.ui.screens.home
 
 import androidx.compose.runtime.Stable
+import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.SourceItem
 import dev.yveskalume.newsappp.core.State
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.domain.model.SourceItem
 
 @Stable
 data class HomeUiState(

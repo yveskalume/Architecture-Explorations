@@ -15,6 +15,7 @@ import dev.yveskalume.newsappp.ui.screens.search.reducers.SetPagingLoadingReduce
 import kotlinx.coroutines.CoroutineScope
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.qualifier.named
+import org.koin.core.scope.get
 import org.koin.dsl.module
 
 internal const val SearchDiContainer = "Search_DI_Container"

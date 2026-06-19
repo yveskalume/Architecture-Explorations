@@ -1,8 +1,7 @@
 package dev.yveskalume.newsappp.ui.screens.home
 
+import dev.yveskalume.newsapp.domain.model.SourceItem
 import dev.yveskalume.newsappp.core.Event
-import dev.yveskalume.newsappp.domain.model.Source
-import dev.yveskalume.newsappp.domain.model.SourceItem
 
 sealed interface HomeEvent : Event {
     data class LoadArticles(val page: Int = 1) : HomeEvent

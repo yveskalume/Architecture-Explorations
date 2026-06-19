@@ -1,8 +1,8 @@
 package dev.yveskalume.newsappp.ui.screens.home.reducers
 
+import dev.yveskalume.newsapp.data.repository.ArticleRepository
+import dev.yveskalume.newsapp.domain.model.Article
 import dev.yveskalume.newsappp.core.Reducer
-import dev.yveskalume.newsappp.data.repository.ArticleRepository
-import dev.yveskalume.newsappp.domain.model.Article
 import dev.yveskalume.newsappp.ui.screens.home.HomeEvent
 import dev.yveskalume.newsappp.ui.screens.home.HomeUiState
 import dev.yveskalume.newsappp.ui.screens.home.ArticleUiState
