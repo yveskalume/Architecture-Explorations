@@ -1,3 +1,4 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google {
@@ -20,4 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NewsAppp"
+includeBuild("../shared")
 include(":app")
