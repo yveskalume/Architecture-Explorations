@@ -30,14 +30,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.yveskalume.newsapp.domain.model.SourceItem
+import dev.yveskalume.newsapp.ui.components.EmptyContent
+import dev.yveskalume.newsapp.ui.components.ErrorContent
+import dev.yveskalume.newsapp.ui.components.NewsCard
+import dev.yveskalume.newsapp.ui.components.NewsCardShimmer
+import dev.yveskalume.newsapp.ui.components.SourcesRow
+import dev.yveskalume.newsapp.ui.components.SourcesRowShimmer
 import dev.yveskalume.newsappp.R
 import dev.yveskalume.newsappp.core.getScopedViewModel
-import dev.yveskalume.newsappp.ui.components.EmptyContent
-import dev.yveskalume.newsappp.ui.components.ErrorContent
-import dev.yveskalume.newsappp.ui.components.NewsCard
-import dev.yveskalume.newsappp.ui.components.NewsCardShimmer
-import dev.yveskalume.newsappp.ui.components.SourcesRow
-import dev.yveskalume.newsappp.ui.components.SourcesRowShimmer
 import dev.yveskalume.newsappp.ui.preview.HomeScreenPreviewProvider
 import dev.yveskalume.newsappp.ui.screens.home.components.TopAppBar
 import dev.yveskalume.newsappp.ui.screens.home.di.HomeDiContainer
@@ -235,5 +235,4 @@ private fun HomeScreenPreview(
         )
     }
 }
-
 

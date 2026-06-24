@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.secrets.gradle.plugin)
@@ -12,7 +11,7 @@ android {
     namespace = "dev.yveskalume.newsappp.shared"
 
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     buildTypes {

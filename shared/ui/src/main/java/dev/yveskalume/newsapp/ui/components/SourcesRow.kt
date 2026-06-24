@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.ui.components
+package dev.yveskalume.newsapp.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.ui.components
+package dev.yveskalume.newsapp.ui.components
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

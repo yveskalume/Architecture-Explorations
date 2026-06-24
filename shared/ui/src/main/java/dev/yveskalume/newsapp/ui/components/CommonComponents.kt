@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.ui.components
+package dev.yveskalume.newsapp.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,12 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import dev.yveskalume.newsappp.R
+import dev.yveskalume.newsapp.ui.R
 
 @Composable
 fun LoadingContent(
@@ -69,9 +68,9 @@ fun ErrorContent(
                 tint = MaterialTheme.colorScheme.error
             )
         }
-        
+
         Spacer(modifier = Modifier.height(24.dp))
-        
+
         Text(
             text = "Oops! Something went wrong",
             style = MaterialTheme.typography.titleLarge,
@@ -79,18 +78,18 @@ fun ErrorContent(
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center
         )
-        
+
         Spacer(modifier = Modifier.height(12.dp))
-        
+
         Text(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )
-        
+
         Spacer(modifier = Modifier.height(32.dp))
-        
+
         Button(
             onClick = onRetry,
             colors = ButtonDefaults.buttonColors(
@@ -130,9 +129,9 @@ fun EmptyContent(
                 tint = MaterialTheme.colorScheme.primary
             )
         }
-        
+
         Spacer(modifier = Modifier.height(24.dp))
-        
+
         Text(
             text = title,
             style = MaterialTheme.typography.headlineSmall,
@@ -140,9 +139,9 @@ fun EmptyContent(
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center
         )
-        
+
         Spacer(modifier = Modifier.height(12.dp))
-        
+
         Text(
             text = message,
             style = MaterialTheme.typography.bodyLarge,

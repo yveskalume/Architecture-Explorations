@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.ui.components
+package dev.yveskalume.newsapp.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import dev.yveskalume.newsapp.domain.model.Article
-import dev.yveskalume.newsappp.R
+import dev.yveskalume.newsapp.ui.R
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit

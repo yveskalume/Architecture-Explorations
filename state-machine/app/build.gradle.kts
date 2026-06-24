@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.secrets.gradle.plugin)
@@ -11,7 +10,7 @@ plugins {
 android {
     namespace = "dev.yveskalume.newsappp"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
@@ -61,6 +60,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.shared.ui)
     implementation(libs.shared.data)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

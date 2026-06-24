@@ -1,4 +1,4 @@
-package dev.yveskalume.newsappp.ui.components
+package dev.yveskalume.newsapp.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -25,7 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import dev.yveskalume.newsappp.R
+import dev.yveskalume.newsapp.ui.R
 
 @Composable
 fun SearchTextField(

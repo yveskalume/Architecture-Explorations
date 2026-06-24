@@ -1,10 +1,7 @@
-import org.gradle.internal.jvm.Jvm
-import org.jetbrains.kotlin.config.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget.*
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.secrets.gradle.plugin)
@@ -13,13 +10,13 @@ plugins {
 android {
     namespace = "dev.yveskalume.newsappp"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
         applicationId = "dev.yveskalume.newsappp"
-        minSdk = 24
-        targetSdk = 36
+        minSdk = 26
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -54,6 +51,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.shared.ui)
     implementation(libs.shared.data)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -63,7 +61,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    
+
     // Ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
@@ -74,22 +72,22 @@ dependencies {
     // Chucker
     debugImplementation(libs.chucker.library)
     releaseImplementation(libs.chucker.library.no.op)
-    
+
     // Koin
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    
+
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
-    
+
     // Navigation 3
     implementation(libs.navigation3.runtime)
     implementation(libs.navigation3.ui)
-    
+
     // Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-    
+
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
