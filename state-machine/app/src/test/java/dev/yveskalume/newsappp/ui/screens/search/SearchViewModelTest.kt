@@ -3,7 +3,7 @@ package dev.yveskalume.newsappp.ui.screens.search
 import dev.yveskalume.newsappp.core.StateManager
 import dev.yveskalume.newsappp.core.getStateManager
 import dev.yveskalume.newsappp.core.scopedReducer
-import dev.yveskalume.newsappp.data.repository.ArticleRepository
+import dev.yveskalume.newsapp.data.repository.ArticleRepository
 import dev.yveskalume.newsappp.fake.FakeArticleRepositorySuccess
 import dev.yveskalume.newsappp.ui.screens.search.reducers.ClearSearchReducer
 import dev.yveskalume.newsappp.ui.screens.search.reducers.PerformSearchReducer

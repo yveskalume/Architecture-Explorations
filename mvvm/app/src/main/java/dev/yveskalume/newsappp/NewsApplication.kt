@@ -1,9 +1,9 @@
 package dev.yveskalume.newsappp
 
 import android.app.Application
-import dev.yveskalume.newsappp.data.di.dataSourceModule
-import dev.yveskalume.newsappp.data.di.ktorModule
-import dev.yveskalume.newsappp.data.di.repositoryModule
+import dev.yveskalume.newsapp.data.di.dataSourceModule
+import dev.yveskalume.newsapp.data.di.ktorModule
+import dev.yveskalume.newsapp.data.di.repositoryModule
 import dev.yveskalume.newsappp.ui.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

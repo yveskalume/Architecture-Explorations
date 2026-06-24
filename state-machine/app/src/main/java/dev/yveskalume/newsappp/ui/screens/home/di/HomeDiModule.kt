@@ -40,7 +40,11 @@ val HomeDiModule = module {
         }
 
         scopedReducer<HomeUiState, HomeEvent.SelectSource> {
-            SelectSourceReducer()
+            SelectSourceReducer(
+                onPublishEvent = { event ->
+                    getStateManager<HomeUiState, HomeEvent>()?.onEvent(event)
+                },
+            )
         }
 
         scopedReducer<HomeUiState, HomeEvent.Refresh> {

@@ -27,15 +27,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
+import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.SourceItem
+import dev.yveskalume.newsapp.ui.components.NewsCard
+import dev.yveskalume.newsapp.ui.components.NewsCardShimmer
+import dev.yveskalume.newsapp.ui.components.SourcesRow
+import dev.yveskalume.newsapp.ui.components.SourcesRowShimmer
 import dev.yveskalume.newsappp.R
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.domain.model.SourceItem
-import dev.yveskalume.newsappp.ui.components.EmptyContent
-import dev.yveskalume.newsappp.ui.components.ErrorContent
-import dev.yveskalume.newsappp.ui.components.NewsCard
-import dev.yveskalume.newsappp.ui.components.NewsCardShimmer
-import dev.yveskalume.newsappp.ui.components.SourcesRow
-import dev.yveskalume.newsappp.ui.components.SourcesRowShimmer
+import dev.yveskalume.newsapp.ui.components.EmptyContent
+import dev.yveskalume.newsapp.ui.components.ErrorContent
 import dev.yveskalume.newsappp.ui.preview.HomeScreenPreviewData
 import dev.yveskalume.newsappp.ui.preview.HomeScreenPreviewProvider
 import dev.yveskalume.newsappp.ui.screens.home.components.TopAppBar
@@ -166,7 +166,7 @@ private fun LazyListScope.articleItems(
     onRetry: () -> Unit
 ) {
 
-    when(articlesState) {
+    when (articlesState) {
         is DataState.Error<*> -> {
             item("articles_error") {
                 ErrorContent(
@@ -176,6 +176,7 @@ private fun LazyListScope.articleItems(
                 )
             }
         }
+
         DataState.Loading -> {
             items(5) {
                 NewsCardShimmer()
@@ -184,6 +185,7 @@ private fun LazyListScope.articleItems(
                 )
             }
         }
+
         is DataState.Success<Article> -> {
             if (articlesState.items.isEmpty()) {
                 item("empty_articles") {

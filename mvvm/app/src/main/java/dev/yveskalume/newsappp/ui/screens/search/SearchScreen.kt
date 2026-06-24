@@ -28,11 +28,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.yveskalume.newsappp.R
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.ui.components.EmptyContent
-import dev.yveskalume.newsappp.ui.components.NewsCardCompact
-import dev.yveskalume.newsappp.ui.components.NewsCardCompactShimmer
-import dev.yveskalume.newsappp.ui.components.SearchTextField
+import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.ui.components.NewsCardCompact
+import dev.yveskalume.newsapp.ui.components.NewsCardCompactShimmer
+import dev.yveskalume.newsapp.ui.components.SearchTextField
+import dev.yveskalume.newsapp.ui.components.EmptyContent
 import dev.yveskalume.newsappp.ui.preview.SearchScreenPreviewData
 import dev.yveskalume.newsappp.ui.preview.SearchScreenPreviewProvider
 import dev.yveskalume.newsappp.ui.theme.NewsApppTheme

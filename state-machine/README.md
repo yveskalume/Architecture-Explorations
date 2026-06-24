@@ -4,6 +4,14 @@ This module uses an event + reducer state machine approach with deterministic st
 
 Instead of putting most logic inside one ViewModel with many callbacks, the UI sends events and reducers handle deterministic transitions.
 
+## Event Processing Behavior
+
+Reducers may publish follow-up events through an `onPublishEvent(...)` callback. For example, source selection updates the selected source and publishes `HomeEvent.LoadArticles()` so the article list reloads for the new source.
+
+Even when `onPublishEvent(HomeEvent.LoadArticles())` is called before the reducer returns, the follow-up event is queued through `StateManager.onEvent(...)`. The current reducer still returns the next `HomeUiState`, and `StateManager` applies that state before the queued follow-up event is processed. This means the follow-up reducer reads the updated state.
+
+This is an intentional architecture behavior in this sample: reducers can describe a transition and enqueue the next event in the same reducer.
+
 ## Pros
 - Fewer callbacks in Compose screens: UI mostly sends events (`onEvent(...)`) instead of passing many lambdas.
 - No giant `when` block in ViewModel to handle all intents.

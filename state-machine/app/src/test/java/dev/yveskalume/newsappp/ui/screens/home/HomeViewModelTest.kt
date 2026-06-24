@@ -3,8 +3,8 @@ package dev.yveskalume.newsappp.ui.screens.home
 import dev.yveskalume.newsappp.core.StateManager
 import dev.yveskalume.newsappp.core.getStateManager
 import dev.yveskalume.newsappp.core.scopedReducer
-import dev.yveskalume.newsappp.data.repository.ArticleRepository
-import dev.yveskalume.newsappp.data.repository.SourcesRepository
+import dev.yveskalume.newsapp.data.repository.ArticleRepository
+import dev.yveskalume.newsapp.data.repository.SourcesRepository
 import dev.yveskalume.newsappp.fake.FakeArticleRepositorySuccess
 import dev.yveskalume.newsappp.fake.FakeSourcesRepositorySuccess
 import dev.yveskalume.newsappp.ui.screens.home.reducers.LoadArticlesReducer
@@ -91,6 +91,7 @@ class HomeViewModelTest : BehaviorSpec({
                         advanceUntilIdle()
 
                         viewModel.uiState.value.selectedSource shouldBe source
+                        (viewModel.uiState.value.sourcesUiState as SourcesUiState.Success).selected shouldBe source
 
                         collectJob.cancel()
                     } finally {
@@ -131,7 +132,11 @@ private fun createHomeScope(
 
             scopedReducer<HomeUiState, HomeEvent.LoadArticles> { LoadArticlesReducer(get()) }
             scopedReducer<HomeUiState, HomeEvent.LoadSources> { LoadSourcesReducer(get()) }
-            scopedReducer<HomeUiState, HomeEvent.SelectSource> { SelectSourceReducer() }
+            scopedReducer<HomeUiState, HomeEvent.SelectSource> {
+                SelectSourceReducer { event ->
+                    getStateManager<HomeUiState, HomeEvent>()?.onEvent(event)
+                }
+            }
             scopedReducer<HomeUiState, HomeEvent.SetPagingLoading> { SetPagingLoadingReducer() }
             scopedReducer<HomeUiState, HomeEvent.SetRefreshLoading> { SetRefreshLoadingReducer() }
             scopedReducer<HomeUiState, HomeEvent.Refresh> {
