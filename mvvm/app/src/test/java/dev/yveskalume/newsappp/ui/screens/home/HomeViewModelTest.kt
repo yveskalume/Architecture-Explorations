@@ -513,7 +513,7 @@ class HomeViewModelTest {
     }
 }
 
-private class RecordingArticleRepository : dev.yveskalume.newsappp.data.repository.ArticleRepository {
+private class RecordingArticleRepository : dev.yveskalume.newsapp.data.repository.ArticleRepository {
     val requestedSources = mutableListOf<String?>()
 
     override suspend fun getTopHeadlines(
@@ -521,7 +521,7 @@ private class RecordingArticleRepository : dev.yveskalume.newsappp.data.reposito
         sources: String?,
         pageSize: Int,
         page: Int
-    ): Result<List<dev.yveskalume.newsappp.domain.model.Article>> {
+    ): Result<List<dev.yveskalume.newsapp.domain.model.Article>> {
         requestedSources += sources
         return Result.success(FakeArticleRepositorySuccess.sampleArticles)
     }
