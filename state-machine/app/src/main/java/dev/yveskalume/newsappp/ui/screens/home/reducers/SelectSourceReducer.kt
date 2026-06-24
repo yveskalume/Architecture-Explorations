@@ -5,18 +5,24 @@ import dev.yveskalume.newsappp.ui.screens.home.HomeEvent
 import dev.yveskalume.newsappp.ui.screens.home.HomeUiState
 import dev.yveskalume.newsappp.ui.screens.home.SourcesUiState
 
-class SelectSourceReducer : Reducer<HomeUiState, HomeEvent.SelectSource> {
+class SelectSourceReducer(
+    private val onPublishEvent: (HomeEvent) -> Unit = {},
+) : Reducer<HomeUiState, HomeEvent.SelectSource> {
     override suspend fun reduce(
         state: HomeUiState,
         event: HomeEvent.SelectSource
     ): HomeUiState {
-        return if (
-            state.sourcesUiState is SourcesUiState.Success &&
-            state.selectedSource?.id != event.source?.id
-        ) {
-            state.copy(selectedSource = event.source)
-        } else {
-            state.copy(selectedSource = null)
+        val selectedSource = event.source.takeIf { it?.id != state.selectedSource?.id }
+        val sourcesUiState = when (val currentSourcesUiState = state.sourcesUiState) {
+            is SourcesUiState.Success -> currentSourcesUiState.copy(selected = selectedSource)
+            else -> currentSourcesUiState
         }
+
+        onPublishEvent(HomeEvent.LoadArticles())
+
+        return state.copy(
+            selectedSource = selectedSource,
+            sourcesUiState = sourcesUiState
+        )
     }
 }
