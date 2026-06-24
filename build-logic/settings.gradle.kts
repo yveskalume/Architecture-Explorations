@@ -1,6 +1,4 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
-    includeBuild("../build-logic")
     repositories {
         google {
             content {
@@ -18,6 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
     versionCatalogs {
         create("libs") {
@@ -26,6 +25,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "shared"
-include(":data")
-include(":ui")
+rootProject.name = "build-logic"
