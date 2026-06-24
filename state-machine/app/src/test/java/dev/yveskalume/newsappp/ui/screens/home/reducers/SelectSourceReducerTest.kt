@@ -23,6 +23,7 @@ class SelectSourceReducerTest : ShouldSpec({
             val result = reducer.reduce(state, HomeEvent.SelectSource(source))
 
             result.selectedSource shouldBe source
+            (result.sourcesUiState as SourcesUiState.Success).selected shouldBe source
         }
     }
 
@@ -38,6 +39,22 @@ class SelectSourceReducerTest : ShouldSpec({
             val result = reducer.reduce(selected, HomeEvent.SelectSource(source))
 
             result.selectedSource shouldBe null
+            (result.sourcesUiState as SourcesUiState.Success).selected shouldBe null
+        }
+    }
+
+    should("request article reload after selection changes") {
+        runTest {
+            val publishedEvents = mutableListOf<HomeEvent>()
+            val reducer = SelectSourceReducer(onPublishEvent = publishedEvents::add)
+            val source = FakeSourcesRepositorySuccess.sampleSources.first()
+            val state = HomeUiState.initial().copy(
+                sourcesUiState = SourcesUiState.Success(FakeSourcesRepositorySuccess.sampleSources)
+            )
+
+            reducer.reduce(state, HomeEvent.SelectSource(source))
+
+            publishedEvents shouldBe listOf(HomeEvent.LoadArticles())
         }
     }
 })

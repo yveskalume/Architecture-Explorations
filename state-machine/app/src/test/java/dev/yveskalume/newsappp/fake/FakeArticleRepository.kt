@@ -1,8 +1,8 @@
 package dev.yveskalume.newsappp.fake
 
-import dev.yveskalume.newsappp.data.repository.ArticleRepository
-import dev.yveskalume.newsappp.domain.model.Article
-import dev.yveskalume.newsappp.domain.model.Source
+import dev.yveskalume.newsapp.data.repository.ArticleRepository
+import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.Source
 
 /**
  * Fake implementation of ArticleRepository that returns predefined success results.

@@ -1,7 +1,7 @@
 package dev.yveskalume.newsappp.fake
 
-import dev.yveskalume.newsappp.data.repository.SourcesRepository
-import dev.yveskalume.newsappp.domain.model.SourceItem
+import dev.yveskalume.newsapp.data.repository.SourcesRepository
+import dev.yveskalume.newsapp.domain.model.SourceItem
 
 /**
  * Fake implementation of SourcesRepository that returns predefined success results.
