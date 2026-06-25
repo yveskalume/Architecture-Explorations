@@ -1,5 +1,6 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
+    includeBuild("../build-logic")
     repositories {
         google {
             content {
@@ -17,6 +18,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+    }
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
     }
 }
 

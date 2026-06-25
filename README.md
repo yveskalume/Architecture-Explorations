@@ -18,6 +18,9 @@ A classic MVVM (Model-View-ViewModel) approach with project-specific patterns li
 #### Event-Driven
 An event-driven architecture where UI dispatches events and reducers handle state transitions. See [state-machine/README.md](state-machine/README.md) for details.
 
+#### Shared Gradle Build
+Architecture samples stay as separate Gradle projects so they can be opened independently in Android Studio. Common Android, Kotlin, Compose, dependency, and test setup lives in [build-logic](build-logic), and all builds read versions from the root [gradle/libs.versions.toml](gradle/libs.versions.toml).
+
 ## Learning Goals
 
 - Understand the complexity trade-offs in different architectures
