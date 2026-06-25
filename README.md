@@ -88,6 +88,17 @@ Use the `studiow` script to quickly open subprojects in Android Studio:
 
 You can also open any project by its path: `./studiow ./path/to/project`
 
+### Adding a New Architecture Sample
+
+Use the sample scaffold script:
+
+```bash
+scripts/new-sample.sh redux dev.yveskalume.newsappp.redux
+./studiow redux
+```
+
+The generated project is an independent Gradle root that includes `../build-logic` for shared conventions and `../shared` for the shared data/UI modules. New sample app modules should apply `alias(libs.plugins.newsapp.android.sample.app)` and keep only project-specific identity or dependencies in their own `build.gradle.kts`.
+
 ## License
 
 This project is open source and available for educational purposes.

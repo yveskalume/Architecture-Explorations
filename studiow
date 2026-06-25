@@ -18,9 +18,12 @@ function usage() {
     echo "  --list, -l           List available projects"
     echo
     echo "PROJECTS"
-    echo "  mvvm                 Open the MVVM architecture project"
-    echo "  state-machine        Open the event-driven state-machine project"
-    echo "  all                  Open the entire workspace"
+    echo "  mvvm, m              Open the MVVM architecture project"
+    echo "  state-machine, sm    Open the event-driven state-machine project"
+    echo "  shared               Open the shared modules project"
+    echo "  all, a               Open the entire workspace"
+    echo
+    echo "Any directory containing settings.gradle(.kts) can also be opened by name."
     echo
     echo "Or specify a project path directly:"
     echo "  studiow ./mvvm"
@@ -31,9 +34,12 @@ function usage() {
 function list_projects() {
     echo "Available projects:"
     echo
-    # Find directories containing build.gradle or build.gradle.kts
+    echo "  all"
     for dir in */; do
-        if [ -f "${dir}build.gradle.kts" ] || [ -f "${dir}build.gradle" ] || [ -f "${dir}settings.gradle.kts" ] || [ -f "${dir}settings.gradle" ]; then
+        if [ "${dir%/}" = "build-logic" ]; then
+            continue
+        fi
+        if [ -f "${dir}settings.gradle.kts" ] || [ -f "${dir}settings.gradle" ]; then
             echo "  ${dir%/}"
         fi
     done
@@ -203,6 +209,9 @@ case "$project" in
         ;;
     state-machine|sm)
         project_path="$SCRIPT_DIR/state-machine"
+        ;;
+    shared)
+        project_path="$SCRIPT_DIR/shared"
         ;;
     all|a)
         project_path="$SCRIPT_DIR"
