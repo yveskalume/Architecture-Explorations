@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">delegated-viewmodels</string>
+    <string name="no_news_available">No news available</string>
+    <string name="there_are_no_articles_to_show">There are no articles to show at the moment. Try selecting a different source.</string>
+    <string name="discover">Discover</string>
+    <string name="daily_news">Daily News</string>
+    <string name="search">Search</string>
+    <string name="feed">Feed</string>
+    <string name="search_for_news">Search for news</string>
+    <string name="enter_keywords_to_search">Enter keywords to search for news articles from various sources.</string>
+    <string name="no_results_found">No results found</string>
+    <string name="try_different_keywords_or_check_your_spelling">Try different keywords or check your spelling.</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="search_news">Search news...</string>
+</resources>
