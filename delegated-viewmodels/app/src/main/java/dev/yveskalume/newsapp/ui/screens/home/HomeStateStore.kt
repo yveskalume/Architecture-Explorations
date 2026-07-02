@@ -1,6 +1,7 @@
-package dev.yveskalume.newsapp.ui.screens.search
+package dev.yveskalume.newsapp.ui.screens.home
 
 import dev.yveskalume.newsapp.domain.model.Article
+import dev.yveskalume.newsapp.domain.model.SourceItem
 import dev.yveskalume.newsapp.util.paging.DataState
 import dev.yveskalume.newsapp.util.paging.PageSnapshot
 import dev.yveskalume.newsapp.util.paging.PageState
@@ -9,23 +10,52 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class SearchStateHandler {
-    private val _state = MutableStateFlow(SearchUiState.initial())
-    val state: StateFlow<SearchUiState> = _state.asStateFlow()
+class HomeStateStore {
+    private val _state = MutableStateFlow(HomeUiState.initial())
+    val state: StateFlow<HomeUiState> = _state.asStateFlow()
 
-    fun update(reducer: SearchUiState.() -> SearchUiState) {
-        _state.update { current -> current.reducer() }
+    fun update(reducer: HomeUiState.() -> HomeUiState) {
+        _state.update { current ->
+            current.reducer()
+        }
     }
 
-    fun setQuery(query: String) {
-        update { copy(query = query) }
+    fun updateSourcesSelection(source: SourceItem?) {
+        update {
+            val updatedSourcesUiState = when (val current = sourcesUiState) {
+                is SourcesUiState.Success -> current.copy(selected = source)
+                else -> current
+            }
+
+            copy(
+                selectedSource = source,
+                sourcesUiState = updatedSourcesUiState,
+            )
+        }
     }
 
-    fun clearArticles() {
+    fun setSourcesLoading() {
+        update {
+            copy(sourcesUiState = SourcesUiState.Loading)
+        }
+    }
+
+    fun setSourcesSuccess(sources: List<SourceItem>) {
         update {
             copy(
-                articlePageSnapshot = PageSnapshot(
-                    dataState = DataState.Success<Article>(emptyList()),
+                sourcesUiState = SourcesUiState.Success(
+                    sources = sources,
+                    selected = selectedSource,
+                )
+            )
+        }
+    }
+
+    fun setSourcesError(message: String?) {
+        update {
+            copy(
+                sourcesUiState = SourcesUiState.Error(
+                    message = message ?: "Failed to load sources",
                 )
             )
         }
@@ -65,10 +95,22 @@ class SearchStateHandler {
             } else {
                 articlePageSnapshot.copy(
                     pageState = PageState.Idle,
-                    dataState = DataState.Error(message ?: "Failed to search news"),
+                    dataState = DataState.Error(message ?: "Failed to load news"),
                 )
             }
             copy(articlePageSnapshot = updatedSnapshot)
+        }
+    }
+
+    fun setRefreshLoading(isLoading: Boolean) {
+        update {
+            copy(
+                refreshUiState = if (isLoading) {
+                    RefreshUiState.Refreshing
+                } else {
+                    RefreshUiState.Idle
+                }
+            )
         }
     }
 }

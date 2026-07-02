@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 class SearchViewModel(
-    stateHandler: SearchStateHandler,
-    val interactors: SearchInteractors,
+    stateStore: SearchStateStore,
+    val controllers: SearchControllers,
 ) : ViewModel() {
-    val uiState: StateFlow<SearchUiState> = stateHandler.state
+    val uiState: StateFlow<SearchUiState> = stateStore.state
 }

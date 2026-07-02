@@ -1,8 +1,8 @@
-package dev.yveskalume.newsapp.ui.screens.home.interactors.impl
+package dev.yveskalume.newsapp.ui.screens.home.controllers.impl
 
-import dev.yveskalume.newsapp.ui.behaviours.GetArticleBehaviour
-import dev.yveskalume.newsapp.ui.screens.home.HomeStateHandler
-import dev.yveskalume.newsapp.ui.screens.home.interactors.ArticlesInteractor
+import dev.yveskalume.newsapp.ui.logic.GetArticleLogic
+import dev.yveskalume.newsapp.ui.screens.home.HomeStateStore
+import dev.yveskalume.newsapp.ui.screens.home.controllers.ArticlesController
 import dev.yveskalume.newsapp.util.paging.DataState
 import dev.yveskalume.newsapp.util.paging.PageNumber
 import dev.yveskalume.newsapp.util.paging.PageState
@@ -10,11 +10,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeArticlesInteractor(
+class HomeArticlesController(
     private val scope: CoroutineScope,
-    private val stateHandler: HomeStateHandler,
-    private val getArticleBehaviour: GetArticleBehaviour
-) : ArticlesInteractor {
+    private val stateStore: HomeStateStore,
+    private val getArticleLogic: GetArticleLogic
+) : ArticlesController {
     private var retryJob: Job? = null
 
     override fun retry() {
@@ -25,7 +25,7 @@ class HomeArticlesInteractor(
     }
 
     override fun loadMore() {
-        val snapshot = stateHandler.state.value.articlePageSnapshot
+        val snapshot = stateStore.state.value.articlePageSnapshot
         if (snapshot.pageState !is PageState.Idle) return
         if (snapshot.dataState !is DataState.Success) return
 
@@ -39,15 +39,15 @@ class HomeArticlesInteractor(
     private suspend fun loadArticles(
         page: PageNumber,
     ) {
-        stateHandler.setArticlesLoading(reset = page.value == 1)
+        stateStore.setArticlesLoading(reset = page.value == 1)
 
-        getArticleBehaviour.load(
-            snapshot = stateHandler.currentArticlePageSnapshot(),
-            sourceId = stateHandler.state.value.selectedSource?.id,
+        getArticleLogic.load(
+            snapshot = stateStore.currentArticlePageSnapshot(),
+            sourceId = stateStore.state.value.selectedSource?.id,
             page = page,
-        ).onSuccess(stateHandler::updateArticlePageSnapshot)
+        ).onSuccess(stateStore::updateArticlePageSnapshot)
             .onFailure { error ->
-                stateHandler.setArticlesError(error.message)
+                stateStore.setArticlesError(error.message)
             }
     }
 }

@@ -32,7 +32,7 @@ import dev.yveskalume.newsapp.ui.components.EmptyContent
 import dev.yveskalume.newsapp.ui.components.NewsCardCompact
 import dev.yveskalume.newsapp.ui.components.NewsCardCompactShimmer
 import dev.yveskalume.newsapp.ui.components.SearchTextField
-import dev.yveskalume.newsapp.ui.screens.search.interactors.SearchInteractor
+import dev.yveskalume.newsapp.ui.screens.search.controllers.SearchController
 import dev.yveskalume.newsapp.ui.theme.NewsAppTheme
 import dev.yveskalume.newsapp.util.paddingAndConsumeWindowInsets
 import dev.yveskalume.newsapp.util.paging.DataState
@@ -59,7 +59,7 @@ fun SearchScreenRoute(
 
     SearchScreen(
         state = state,
-        interactors = viewModel.interactors,
+        controllers = viewModel.controllers,
     )
 }
 
@@ -67,7 +67,7 @@ fun SearchScreenRoute(
 @Composable
 private fun SearchScreen(
     state: SearchUiState,
-    interactors: SearchInteractors,
+    controllers: SearchControllers,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -97,14 +97,14 @@ private fun SearchScreen(
         ) {
             SearchTextField(
                 queryText = state.query,
-                onQueryChange = interactors::onQueryChanged,
-                onClearSearch = interactors::clearSearch,
+                onQueryChange = controllers::onQueryChanged,
+                onClearSearch = controllers::clearSearch,
             )
 
             SearchContent(
                 query = state.query,
                 articlePageSnapshot = state.articlePageSnapshot,
-                onLoadMore = interactors::loadMore,
+                onLoadMore = controllers::loadMore,
             )
         }
     }
@@ -196,8 +196,8 @@ private fun SearchScreenPreview() {
     NewsAppTheme {
         SearchScreen(
             state = SearchUiState.initial(),
-            interactors = SearchInteractors(
-                searchInteractor = object : SearchInteractor {
+            controllers = SearchControllers(
+                searchController = object : SearchController {
                     override fun onQueryChanged(query: String) = Unit
                     override fun clearSearch() = Unit
                     override fun loadMore() = Unit

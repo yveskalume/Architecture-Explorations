@@ -1,13 +1,13 @@
 package dev.yveskalume.newsapp.ui.screens.home
 
-import dev.yveskalume.newsapp.ui.behaviours.GetArticleBehaviour
-import dev.yveskalume.newsapp.ui.screens.home.behaviours.InitialHomeBehaviour
-import dev.yveskalume.newsapp.ui.screens.home.interactors.ArticlesInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.impl.HomeArticlesInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.impl.HomeRefreshInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.impl.HomeSourcesInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.RefreshInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.SourcesInteractor
+import dev.yveskalume.newsapp.ui.logic.GetArticleLogic
+import dev.yveskalume.newsapp.ui.screens.home.logic.InitialHomeLogic
+import dev.yveskalume.newsapp.ui.screens.home.controllers.ArticlesController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.impl.HomeArticlesController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.impl.HomeRefreshController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.impl.HomeSourcesController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.RefreshController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.SourcesController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -33,60 +33,60 @@ val homeModule = module {
 
         viewModel {
             HomeViewModel(
-                stateHandler = get(),
-                interactors = get(),
-                initialHomeBehaviour = get(),
+                stateStore = get(),
+                controllers = get(),
+                initialHomeLogic = get(),
             )
         }
 
         scoped {
-            HomeStateHandler()
+            HomeStateStore()
         }
 
         scoped {
-            InitialHomeBehaviour(
+            InitialHomeLogic(
                 sourcesRepository = get(),
-                stateHandler = get(),
-                getArticleBehaviour = get(),
+                stateStore = get(),
+                getArticleLogic = get(),
             )
         }
 
         scoped {
-            GetArticleBehaviour(
+            GetArticleLogic(
                 articleRepository = get(),
             )
         }
 
-        scoped<SourcesInteractor> {
-            HomeSourcesInteractor(
+        scoped<SourcesController> {
+            HomeSourcesController(
                 scope = get(),
-                stateHandler = get(),
-                getArticleBehaviour = get(),
+                stateStore = get(),
+                getArticleLogic = get(),
             )
         }
 
-        scoped<ArticlesInteractor> {
-            HomeArticlesInteractor(
+        scoped<ArticlesController> {
+            HomeArticlesController(
                 scope = get(),
-                stateHandler = get(),
-                getArticleBehaviour = get(),
+                stateStore = get(),
+                getArticleLogic = get(),
             )
         }
 
-        scoped<RefreshInteractor> {
-            HomeRefreshInteractor(
+        scoped<RefreshController> {
+            HomeRefreshController(
                 scope = get(),
-                stateHandler = get(),
+                stateStore = get(),
                 sourcesRepository = get(),
-                getArticleBehaviour = get(),
+                getArticleLogic = get(),
             )
         }
 
         scoped {
-            HomeInteractors(
-                sourcesInteractor = get(),
-                articlesInteractor = get(),
-                refreshInteractor = get(),
+            HomeControllers(
+                sourcesController = get(),
+                articlesController = get(),
+                refreshController = get(),
             )
         }
 

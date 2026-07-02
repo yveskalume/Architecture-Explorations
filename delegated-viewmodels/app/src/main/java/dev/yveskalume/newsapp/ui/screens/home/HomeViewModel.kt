@@ -2,20 +2,20 @@ package dev.yveskalume.newsapp.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.yveskalume.newsapp.ui.screens.home.behaviours.InitialHomeBehaviour
+import dev.yveskalume.newsapp.ui.screens.home.logic.InitialHomeLogic
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
 class HomeViewModel(
-    private val stateHandler: HomeStateHandler,
-    val interactors: HomeInteractors,
-    private val initialHomeBehaviour: InitialHomeBehaviour,
+    private val stateStore: HomeStateStore,
+    val controllers: HomeControllers,
+    private val initialHomeLogic: InitialHomeLogic,
 ) : ViewModel() {
-    val uiState: StateFlow<HomeUiState> = stateHandler.state
+    val uiState: StateFlow<HomeUiState> = stateStore.state
         .onStart {
-            initialHomeBehaviour.load()
+            initialHomeLogic.load()
         }
         .stateIn(
             scope = viewModelScope,

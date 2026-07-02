@@ -1,9 +1,9 @@
 package dev.yveskalume.newsapp.ui.screens.search
 
-import dev.yveskalume.newsapp.ui.behaviours.GetArticleBehaviour
-import dev.yveskalume.newsapp.ui.screens.search.behaviours.SearchBehaviour
-import dev.yveskalume.newsapp.ui.screens.search.interactors.SearchInteractor
-import dev.yveskalume.newsapp.ui.screens.search.interactors.SearchScreenInteractor
+import dev.yveskalume.newsapp.ui.logic.GetArticleLogic
+import dev.yveskalume.newsapp.ui.screens.search.logic.SearchLogic
+import dev.yveskalume.newsapp.ui.screens.search.controllers.SearchController
+import dev.yveskalume.newsapp.ui.screens.search.controllers.SearchScreenController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,36 +29,36 @@ val searchModule = module {
         }
 
         scoped {
-            SearchStateHandler()
+            SearchStateStore()
         }
 
         scoped {
-            SearchBehaviour()
+            SearchLogic()
         }
 
         scoped {
-            GetArticleBehaviour(
+            GetArticleLogic(
                 articleRepository = get(),
             )
         }
 
-        scoped<SearchInteractor> {
-            SearchScreenInteractor(
+        scoped<SearchController> {
+            SearchScreenController(
                 scope = get(),
-                stateHandler = get(),
-                getArticleBehaviour = get(),
-                searchBehaviour = get(),
+                stateStore = get(),
+                getArticleLogic = get(),
+                searchLogic = get(),
             )
         }
 
         scoped {
-            SearchInteractors(searchInteractor = get())
+            SearchControllers(searchController = get())
         }
 
         viewModel {
             SearchViewModel(
-                stateHandler = get(),
-                interactors = get(),
+                stateStore = get(),
+                controllers = get(),
             )
         }
     }

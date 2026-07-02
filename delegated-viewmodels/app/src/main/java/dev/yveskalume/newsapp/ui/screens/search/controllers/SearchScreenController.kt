@@ -1,8 +1,8 @@
-package dev.yveskalume.newsapp.ui.screens.search.interactors
+package dev.yveskalume.newsapp.ui.screens.search.controllers
 
-import dev.yveskalume.newsapp.ui.behaviours.GetArticleBehaviour
-import dev.yveskalume.newsapp.ui.screens.search.SearchStateHandler
-import dev.yveskalume.newsapp.ui.screens.search.behaviours.SearchBehaviour
+import dev.yveskalume.newsapp.ui.logic.GetArticleLogic
+import dev.yveskalume.newsapp.ui.screens.search.SearchStateStore
+import dev.yveskalume.newsapp.ui.screens.search.logic.SearchLogic
 import dev.yveskalume.newsapp.util.paging.DataState
 import dev.yveskalume.newsapp.util.paging.PageNumber
 import dev.yveskalume.newsapp.util.paging.PageState
@@ -10,21 +10,21 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class SearchScreenInteractor(
+class SearchScreenController(
     private val scope: CoroutineScope,
-    private val stateHandler: SearchStateHandler,
-    private val getArticleBehaviour: GetArticleBehaviour,
-    private val searchBehaviour: SearchBehaviour,
-) : SearchInteractor {
+    private val stateStore: SearchStateStore,
+    private val getArticleLogic: GetArticleLogic,
+    private val searchLogic: SearchLogic,
+) : SearchController {
     private var searchJob: Job? = null
 
     override fun onQueryChanged(query: String) {
-        stateHandler.setQuery(query)
+        stateStore.setQuery(query)
 
-        val normalizedQuery = searchBehaviour.normalizeQuery(query)
-        if (!searchBehaviour.canSearch(normalizedQuery)) {
+        val normalizedQuery = searchLogic.normalizeQuery(query)
+        if (!searchLogic.canSearch(normalizedQuery)) {
             searchJob?.cancel()
-            stateHandler.clearArticles()
+            stateStore.clearArticles()
             return
         }
 
@@ -39,14 +39,14 @@ class SearchScreenInteractor(
 
     override fun clearSearch() {
         searchJob?.cancel()
-        stateHandler.setQuery("")
-        stateHandler.clearArticles()
+        stateStore.setQuery("")
+        stateStore.clearArticles()
     }
 
     override fun loadMore() {
-        val state = stateHandler.state.value
-        val normalizedQuery = searchBehaviour.normalizeQuery(state.query)
-        if (!searchBehaviour.canSearch(normalizedQuery)) return
+        val state = stateStore.state.value
+        val normalizedQuery = searchLogic.normalizeQuery(state.query)
+        if (!searchLogic.canSearch(normalizedQuery)) return
         if (state.articlePageSnapshot.pageState !is PageState.Idle) return
         if (state.articlePageSnapshot.dataState !is DataState.Success) return
 
@@ -64,15 +64,15 @@ class SearchScreenInteractor(
         query: String,
         page: PageNumber,
     ) {
-        stateHandler.setArticlesLoading(reset = page.value == 1)
+        stateStore.setArticlesLoading(reset = page.value == 1)
 
-        getArticleBehaviour.load(
-            snapshot = stateHandler.currentArticlePageSnapshot(),
+        getArticleLogic.load(
+            snapshot = stateStore.currentArticlePageSnapshot(),
             query = query,
             page = page,
-        ).onSuccess(stateHandler::updateArticlePageSnapshot)
+        ).onSuccess(stateStore::updateArticlePageSnapshot)
             .onFailure { error ->
-                stateHandler.setArticlesError(error.message)
+                stateStore.setArticlesError(error.message)
             }
     }
 }

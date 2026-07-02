@@ -1,7 +1,7 @@
-package dev.yveskalume.newsapp.ui.screens.home.interactors
+package dev.yveskalume.newsapp.ui.screens.home.controllers
 
 import dev.yveskalume.newsapp.domain.model.SourceItem
 
-interface SourcesInteractor {
+interface SourcesController {
     fun selectSource(source: SourceItem?)
 }

@@ -1,6 +1,6 @@
-package dev.yveskalume.newsapp.ui.screens.search.behaviours
+package dev.yveskalume.newsapp.ui.screens.search.logic
 
-class SearchBehaviour {
+class SearchLogic {
     fun normalizeQuery(query: String): String {
         return query.trim()
     }

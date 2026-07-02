@@ -1,4 +1,4 @@
-package dev.yveskalume.newsapp.ui.behaviours
+package dev.yveskalume.newsapp.ui.logic
 
 import dev.yveskalume.newsapp.data.repository.ArticleRepository
 import dev.yveskalume.newsapp.domain.model.Article
@@ -9,7 +9,7 @@ import dev.yveskalume.newsapp.util.paging.PageState
 
 private const val PAGE_SIZE = 20
 
-class GetArticleBehaviour(
+class GetArticleLogic(
     private val articleRepository: ArticleRepository,
 ) {
 

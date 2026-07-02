@@ -34,9 +34,9 @@ import dev.yveskalume.newsapp.ui.components.NewsCard
 import dev.yveskalume.newsapp.ui.components.NewsCardShimmer
 import dev.yveskalume.newsapp.ui.components.SourcesRow
 import dev.yveskalume.newsapp.ui.components.SourcesRowShimmer
-import dev.yveskalume.newsapp.ui.screens.home.interactors.ArticlesInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.RefreshInteractor
-import dev.yveskalume.newsapp.ui.screens.home.interactors.SourcesInteractor
+import dev.yveskalume.newsapp.ui.screens.home.controllers.ArticlesController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.RefreshController
+import dev.yveskalume.newsapp.ui.screens.home.controllers.SourcesController
 import dev.yveskalume.newsapp.util.paging.DataState
 import dev.yveskalume.newsapp.util.paging.LazyPagedList
 import dev.yveskalume.newsapp.util.paging.PageSnapshot
@@ -62,7 +62,7 @@ fun HomeScreenRoute(
 
     HomeScreen(
         state = state,
-        interactors = viewModel.interactors,
+        controllers = viewModel.controllers,
     )
 }
 
@@ -70,7 +70,7 @@ fun HomeScreenRoute(
 @Composable
 fun HomeScreen(
     state: HomeUiState,
-    interactors: HomeInteractors,
+    controllers: HomeControllers,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
@@ -91,14 +91,14 @@ fun HomeScreen(
     ) { paddingValues ->
         PullToRefreshBox(
             isRefreshing = state.refreshUiState is RefreshUiState.Refreshing,
-            onRefresh = interactors::refresh,
+            onRefresh = controllers::refresh,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
         ) {
             HomeContent(
                 state = state,
-                interactors = interactors,
+                controllers = controllers,
             )
         }
     }
@@ -107,13 +107,13 @@ fun HomeScreen(
 @Composable
 private fun HomeContent(
     state: HomeUiState,
-    interactors: HomeInteractors,
+    controllers: HomeControllers,
     modifier: Modifier = Modifier,
 ) {
     state.error?.let { message ->
         ErrorContent(
             message = message,
-            onRetry = interactors::refresh,
+            onRetry = controllers::refresh,
             modifier = modifier.fillMaxSize(),
         )
         return
@@ -123,20 +123,20 @@ private fun HomeContent(
 
     LazyPagedList(
         state = listState,
-        onLoadMore = interactors::loadMore,
+        onLoadMore = controllers::loadMore,
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(bottom = 16.dp),
     ) {
         item("sources") {
             SourcesSection(
                 state = state.sourcesUiState,
-                interactor = interactors,
+                controller = controllers,
             )
         }
 
         articleItems(
             articlePageSnapshot = state.articlePageSnapshot,
-            interactor = interactors,
+            controller = controllers,
         )
     }
 }
@@ -144,7 +144,7 @@ private fun HomeContent(
 @Composable
 private fun SourcesSection(
     state: SourcesUiState,
-    interactor: SourcesInteractor,
+    controller: SourcesController,
     modifier: Modifier = Modifier,
 ) {
     if (state is SourcesUiState.Error) return
@@ -155,7 +155,7 @@ private fun SourcesSection(
             is SourcesUiState.Success -> SourcesRow(
                 sources = state.sources,
                 selectedSource = state.selected,
-                onSourceClick = interactor::selectSource,
+                onSourceClick = controller::selectSource,
             )
             is SourcesUiState.Error -> Unit
         }
@@ -168,7 +168,7 @@ private fun SourcesSection(
 
 private fun LazyListScope.articleItems(
     articlePageSnapshot: PageSnapshot<Article>,
-    interactor: ArticlesInteractor,
+    controller: ArticlesController,
 ) {
     when (val dataState = articlePageSnapshot.dataState) {
         DataState.Loading -> {
@@ -204,7 +204,7 @@ private fun LazyListScope.articleItems(
             item("articles_error") {
                 ErrorContent(
                     message = dataState.message,
-                    onRetry = interactor::retry,
+                    onRetry = controller::retry,
                     modifier = Modifier.height(400.dp),
                 )
             }
@@ -218,15 +218,15 @@ private fun HomeScreenPreview() {
     MaterialTheme {
         HomeScreen(
             state = HomeUiState.initial(),
-            interactors = HomeInteractors(
-                sourcesInteractor = object : SourcesInteractor {
+            controllers = HomeControllers(
+                sourcesController = object : SourcesController {
                     override fun selectSource(source: dev.yveskalume.newsapp.domain.model.SourceItem?) = Unit
                 },
-                articlesInteractor = object : ArticlesInteractor {
+                articlesController = object : ArticlesController {
                     override fun retry() = Unit
                     override fun loadMore() = Unit
                 },
-                refreshInteractor = object : RefreshInteractor {
+                refreshController = object : RefreshController {
                     override fun refresh() = Unit
                 },
             ),
