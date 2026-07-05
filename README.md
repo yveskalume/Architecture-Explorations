@@ -4,9 +4,9 @@
 
 ## About
 
-This project should probably be called “Architecture Madness”. It’s my personal excuse to over-engineer a News app, and I’m going to push every concept to its extreme version; not because it’s the smartest thing to do, but because it’s fun (because we all sometimes love complex things; even when they don’t bring much value). And since I can’t do this at work, I’m doing it here. 
+This project should probably be called “Architecture Madness”. It’s my personal excuse to over-engineer a News app, and I’m going to push every concept to its extreme version; because it’s fun (because we all sometimes love complex things; even when they don’t bring much value). And since I can’t do this at work, I’m doing it here. 
 
-Read the code at your own risk. You can still learn from these samples and steal what’s useful, but please don’t go “I did it because it does so here”. Also feel free to imitate what you see on big companies’ engineering blogs… you know, despite the tiny detail that you’re not them (and neither am I).”
+You can still learn from these samples and steal what’s useful, but please don’t go “I did it because it does so here”. Also feel free to imitate what you see on big companies’ engineering blogs… you know, despite the tiny detail that you’re not them (and neither am I).”
 
 ## Project Structure
 
@@ -20,27 +20,6 @@ An event-driven architecture where UI dispatches events and reducers handle stat
 
 #### Shared Gradle Build
 Architecture samples stay as separate Gradle projects so they can be opened independently in Android Studio. Common Android, Kotlin, Compose, dependency, and test setup lives in [build-logic](build-logic), and all builds read versions from the root [gradle/libs.versions.toml](gradle/libs.versions.toml).
-
-## Learning Goals
-
-- Understand the complexity trade-offs in different architectures
-- See patterns pushed to their extremes
-- Learn when simpler is better
-- Pick useful concepts that fit your actual needs
-
-## What You Can Learn
-
-- State management patterns
-- Testability strategies
-- Dependency injection approaches
-- And much more...
-
-## What NOT to Learn
-
-- Don't treat complexity as a badge of honor
-- Don't over-engineer your production apps
-- Don't cargo-cult patterns from big tech without understanding context
-- Don't sacrifice maintainability for "purity"
 
 ## Contributing
 
